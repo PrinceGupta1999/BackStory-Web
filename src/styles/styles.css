@@ -1,0 +1,4 @@
+/* hiding the react share component header */
+section[role='dialog'] header {
+  display: none;
+}
