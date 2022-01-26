@@ -1,12 +1,11 @@
 export interface StoryDto {
-  id: string;
+  id?: string;
   bannerImageUrl: string;
   title: string;
   abstract: string;
   outline: string;
-  publishTime?: number;
-  uploadTime: number;
-  eventTime: number;
+  publishDate: string;
+  eventDate: string;
   tags: string[];
   story: string;
   minutesToRead: number;

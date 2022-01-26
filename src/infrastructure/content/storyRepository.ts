@@ -17,7 +17,7 @@ import { AccessLevel } from '../../types/enum/accessLevel';
 import { PublishStatus } from '../../types/enum/publishStatus';
 import { FirestoreCollections } from '../core/firestoreCollections';
 import { db } from '../core/initializeFirebase';
-import { firestoreStoryConverter } from './storyConverter';
+import { firestoreStoryConverter, formatDateString } from './storyConverter';
 import { StoryFields } from './storyFields';
 
 export const getStories = async (
@@ -78,21 +78,18 @@ const fillQueryForAccessLevel = (
           '==',
           PublishStatus.PUBLISHED.toLongString()
         ),
-        where(StoryFields.publishTime, '<=', Date.now() * 1000),
-        orderBy(StoryFields.publishTime, 'desc')
+        where(StoryFields.publishDate, '<=', formatDateString(new Date())),
+        orderBy(StoryFields.publishDate, 'desc')
       );
     case AccessLevel.ADMIN:
-      return query(q, orderBy(StoryFields.uploadTime, 'desc'));
+      return query(q, orderBy(StoryFields.publishDate, 'desc'));
     default:
       return q;
   }
 };
 
-export const saveStory = async (
-  storyDto: StoryDto,
-  newStory: boolean
-): Promise<string> => {
-  if (newStory) {
+export const saveStory = async (storyDto: StoryDto): Promise<string> => {
+  if (!storyDto.id) {
     const docRef = await addDoc(
       collection(db, FirestoreCollections.thots),
       firestoreStoryConverter.toFirestore(storyDto)

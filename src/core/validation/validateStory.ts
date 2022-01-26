@@ -1,7 +1,6 @@
 import { pickBy } from 'lodash';
 import { Story } from '../../types/content/story';
 import { StoryError } from '../../types/content/storyError';
-import { PublishStatus } from '../../types/enum/publishStatus';
 
 export const validateStory = ({
   bannerImageUrl,
@@ -10,9 +9,8 @@ export const validateStory = ({
   abstract,
   outline,
   minutesToRead,
-  eventTime,
-  publishStatus,
-  publishTime,
+  eventDate: eventTime,
+  publishDate: publishTime,
   tags,
   readMoreStorySlugs,
 }: Story): StoryError => {
@@ -32,19 +30,14 @@ export const validateStory = ({
       : minutesToRead >= 60
       ? 'Minutes to Read too much'
       : undefined;
-  if (publishStatus === PublishStatus.PUBLISHED) {
-    if (!publishTime) {
-      storyError.publishTime =
-        'Publish Time cannot be empty when PublishStatus is PUBLISHED';
-    } else if (
-      publishTime.getDate() !== eventTime.getDate() ||
-      publishTime.getMonth() !== eventTime.getMonth()
-    ) {
-      storyError.publishTime =
-        'Day and/or Month of Event Time and Publish Time do not match';
-      storyError.eventTime =
-        'Day and/or Month of Event Time and Publish Time do not match';
-    }
+  if (
+    publishTime.getDate() !== eventTime.getDate() ||
+    publishTime.getMonth() !== eventTime.getMonth()
+  ) {
+    storyError.publishDate =
+      'Day and/or Month of Event Time and Publish Time do not match';
+    storyError.eventDate =
+      'Day and/or Month of Event Time and Publish Time do not match';
   }
   storyError.tags =
     tags.length === 0

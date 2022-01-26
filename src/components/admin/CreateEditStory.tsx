@@ -53,12 +53,11 @@ export const CreateEditStory: React.FC<CreateEditStoryProps> = ({ story }) => {
   );
   const [abstract, setAbstract] = useState(story?.abstract ?? '');
   const [outline, setOutline] = useState(story?.outline ?? '');
-  const [eventTime, setEventTime] = useState(story?.eventTime ?? new Date());
-  const [publishTime, setPublishTime] = useState(
-    story?.publishTime ?? new Date()
+  const [eventDate, setEventDate] = useState(story?.eventDate ?? new Date());
+  const [publishDate, setPublishDate] = useState(
+    story?.publishDate ?? new Date()
   );
   const [minutesToRead, setMinutesToRead] = useState(story?.minutesToRead ?? 5);
-  const [uploadTime, setUploadTime] = useState(story?.uploadTime ?? new Date());
   const [publishStatus, setPublishStatus] = useState(
     story?.publishStatus ?? PublishStatus.DRAFT
   );
@@ -89,17 +88,16 @@ export const CreateEditStory: React.FC<CreateEditStoryProps> = ({ story }) => {
     e.preventDefault();
 
     const newStory: Story = {
-      id: story?.id ?? uuid(),
+      id: story?.id,
       title,
       slug,
       bannerImageUrl,
       abstract,
       outline,
       minutesToRead,
-      eventTime: eventTime!,
-      uploadTime: uploadTime!,
+      eventDate: eventDate,
       publishStatus,
-      publishTime,
+      publishDate: publishDate,
       featured: featured === 'true',
       tags,
       story: mdStory,
@@ -120,7 +118,7 @@ export const CreateEditStory: React.FC<CreateEditStoryProps> = ({ story }) => {
     const storyDto = storyDtoConverter.toDto(newStory);
     setSaving(true);
     try {
-      await saveStory(storyDto, story?.id === undefined);
+      await saveStory(storyDto);
       setSaving(false);
       setSnackbar({
         open: true,
@@ -293,18 +291,18 @@ export const CreateEditStory: React.FC<CreateEditStoryProps> = ({ story }) => {
                 if (e) {
                   setStoryError({
                     ...storyError,
-                    eventTime: reason?.toString(),
+                    eventDate: reason?.toString(),
                   });
                 } else {
                   setStoryError({
                     ...storyError,
-                    eventTime: undefined,
+                    eventDate: undefined,
                   });
                 }
               }}
-              value={eventTime}
+              value={eventDate}
               onChange={(newValue) => {
-                setEventTime(newValue ?? new Date());
+                setEventDate(newValue ?? new Date());
               }}
               inputFormat="dd/MM/yyyy"
               renderInput={(params) => (
@@ -312,27 +310,27 @@ export const CreateEditStory: React.FC<CreateEditStoryProps> = ({ story }) => {
                   {...params}
                   required
                   disabled={saving}
-                  helperText={storyError?.eventTime ?? params.helperText}
-                  error={params.error || storyError?.eventTime !== undefined}
+                  helperText={storyError?.eventDate ?? params.helperText}
+                  error={params.error || storyError?.eventDate !== undefined}
                 />
               )}
             />
             <DatePicker
-              label="Date of Upload"
-              value={uploadTime}
+              label="Date of Publishing"
+              value={publishDate}
               onChange={(newValue) => {
-                setUploadTime(newValue ?? new Date());
+                setPublishDate(newValue ?? new Date());
               }}
               onError={(e, reason) => {
                 if (e) {
                   setStoryError({
                     ...storyError,
-                    uploadTime: reason?.toString(),
+                    publishDate: reason?.toString(),
                   });
                 } else {
                   setStoryError({
                     ...storyError,
-                    uploadTime: undefined,
+                    publishDate: undefined,
                   });
                 }
               }}
@@ -340,10 +338,10 @@ export const CreateEditStory: React.FC<CreateEditStoryProps> = ({ story }) => {
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  required
+                  required={publishStatus === PublishStatus.PUBLISHED}
                   disabled={saving}
-                  helperText={storyError?.uploadTime ?? params.helperText}
-                  error={params.error || storyError?.uploadTime !== undefined}
+                  helperText={storyError?.publishDate ?? params.helperText}
+                  error={params.error || storyError?.publishDate !== undefined}
                 />
               )}
             />
@@ -395,41 +393,6 @@ export const CreateEditStory: React.FC<CreateEditStoryProps> = ({ story }) => {
                 </MenuItem>
               ))}
             </TextField>
-            {PublishStatus.PUBLISHED === publishStatus ? (
-              <DatePicker
-                label="Date of Publishing"
-                value={publishTime}
-                onChange={(newValue) => {
-                  setPublishTime(newValue ?? new Date());
-                }}
-                onError={(e, reason) => {
-                  if (e) {
-                    setStoryError({
-                      ...storyError,
-                      publishTime: reason?.toString(),
-                    });
-                  } else {
-                    setStoryError({
-                      ...storyError,
-                      publishTime: undefined,
-                    });
-                  }
-                }}
-                inputFormat="dd/MM/yyyy"
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    required={publishStatus === PublishStatus.PUBLISHED}
-                    disabled={saving}
-                    helperText={storyError?.publishTime ?? params.helperText}
-                    error={
-                      params.error || storyError?.publishTime !== undefined
-                    }
-                  />
-                )}
-              />
-            ) : null}
-
             <Stack spacing={3} flexGrow={1}>
               <Autocomplete
                 multiple

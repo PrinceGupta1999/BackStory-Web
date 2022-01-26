@@ -2,14 +2,13 @@ import { Language } from '../enum/language';
 import { PublishStatus } from '../enum/publishStatus';
 
 export interface Story {
-  id: string;
+  id?: string;
   bannerImageUrl: string;
   title: string;
   abstract: string;
   outline: string;
-  publishTime?: Date;
-  uploadTime: Date;
-  eventTime: Date;
+  publishDate: Date;
+  eventDate: Date;
   tags: string[];
   story: string;
   minutesToRead: number;

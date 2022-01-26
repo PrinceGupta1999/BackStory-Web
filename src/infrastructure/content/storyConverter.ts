@@ -2,6 +2,7 @@ import {
   DocumentData,
   FirestoreDataConverter,
   QueryDocumentSnapshot,
+  serverTimestamp,
   SnapshotOptions,
 } from 'firebase/firestore';
 import { Story } from '../../types/content/story';
@@ -16,6 +17,8 @@ export const firestoreStoryConverter: FirestoreDataConverter<StoryDto> = {
       {
         ...story,
         id: undefined,
+        createTimeStamp: story.id ? undefined : serverTimestamp(),
+        updateTimeStamp: serverTimestamp(),
       },
       (v) => v !== undefined
     );
@@ -29,6 +32,8 @@ export const firestoreStoryConverter: FirestoreDataConverter<StoryDto> = {
     return pickBy(
       {
         ...data,
+        createTimeStamp: undefined,
+        updateTimeStamp: undefined,
         id: snapshot.id,
         featured: data.featured ?? false,
       },
@@ -41,11 +46,8 @@ export const storyDtoConverter = {
   toDto: (story: Story): StoryDto => {
     return {
       ...story,
-      publishTime: story.publishTime
-        ? story.publishTime.valueOf() * 1000
-        : undefined,
-      uploadTime: story.uploadTime.valueOf() * 1000,
-      eventTime: story.eventTime.valueOf() * 1000,
+      publishDate: formatDateString(story.publishDate),
+      eventDate: formatDateString(story.publishDate),
       language: story.language.toLongString(),
       publishStatus: story.publishStatus.toLongString(),
     };
@@ -53,11 +55,8 @@ export const storyDtoConverter = {
   fromDto: (storyDto: StoryDto): Story => {
     return {
       ...storyDto,
-      publishTime: storyDto.publishTime
-        ? new Date(storyDto.publishTime / 1000)
-        : undefined,
-      uploadTime: new Date(storyDto.uploadTime / 1000),
-      eventTime: new Date(storyDto.eventTime / 1000),
+      publishDate: new Date(storyDto.publishDate),
+      eventDate: new Date(storyDto.publishDate),
       language:
         Language.fromLongString(storyDto.language) ?? Language.ENGLISH_US,
       publishStatus:
@@ -65,4 +64,10 @@ export const storyDtoConverter = {
         PublishStatus.DRAFT,
     };
   },
+};
+
+export const formatDateString = (date: Date): string => {
+  const offset = date.getTimezoneOffset();
+  const utcDate = new Date(date.getTime() - offset * 60 * 1000);
+  return utcDate.toISOString().split('T')[0];
 };

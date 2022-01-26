@@ -78,7 +78,7 @@ const StoryCard: React.FC<StoryCardProps> = ({
         <CardActions sx={{ display: 'flex' }}>
           <Grid container justifyContent="space-between" px={2}>
             <TimeAgoTypography
-              date={story.publishTime ?? story.uploadTime}
+              date={story.publishDate}
               typographyProps={{ variant: 'body2', color: 'text.secondary' }}
             />
             {accessLevel === AccessLevel.ADMIN ? (

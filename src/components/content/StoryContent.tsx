@@ -30,7 +30,7 @@ const StoryContent: React.FC<StoryContentProps> = ({ story }) => {
             {story.minutesToRead} Mins Read
           </Typography>
           <TimeAgoTypography
-            date={story.publishTime ?? story.uploadTime}
+            date={story.publishDate}
             typographyProps={{ variant: 'overline', children: 'Published' }}
           />
         </Grid>
