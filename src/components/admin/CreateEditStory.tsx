@@ -16,7 +16,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { v4 as uuid } from 'uuid';
+import { useRouter } from 'next/router';
 import { FormEvent, useState } from 'react';
 import Editor from 'rich-markdown-editor';
 import { getMinDate } from '../../core/utils';
@@ -27,7 +27,6 @@ import { Story } from '../../types/content/story';
 import { StoryError } from '../../types/content/storyError';
 import { Language } from '../../types/enum/language';
 import { PublishStatus } from '../../types/enum/publishStatus';
-import { useRouter } from 'next/router';
 
 interface CreateEditStoryProps {
   story?: Story;
