@@ -3,8 +3,10 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '../components/core/createEmotionCache';
 
+console.log('starting _document.tsx', new Date());
 export default class MyDocument extends Document {
   render() {
+    console.log('inside render _document.tsx', new Date());
     return (
       <Html lang="en">
         <Head>
@@ -47,6 +49,7 @@ MyDocument.getInitialProps = async (ctx) => {
   // 3. app.render
   // 4. page.render
 
+  console.log('inside getInitialProps _document.tsx', new Date());
   const originalRenderPage = ctx.renderPage;
 
   // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
@@ -59,8 +62,8 @@ MyDocument.getInitialProps = async (ctx) => {
       enhanceApp: (App: any) => (props) =>
         <App emotionCache={cache} {...props} />,
     });
-
   const initialProps = await Document.getInitialProps(ctx);
+  console.log('got initial props _document.tsx', new Date());
   // This is important. It prevents emotion to render invalid HTML.
   // See https://github.com/mui-org/material-ui/issues/26561#issuecomment-855286153
   const emotionStyles = extractCriticalToChunks(initialProps.html);
@@ -72,7 +75,7 @@ MyDocument.getInitialProps = async (ctx) => {
       dangerouslySetInnerHTML={{ __html: style.css }}
     />
   ));
-
+  console.log('returning props _document.tsx', new Date());
   return {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.

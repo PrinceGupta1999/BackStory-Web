@@ -18,11 +18,12 @@ import { getUser } from '../infrastructure/auth/authRepository';
 import { userDtoConverter } from '../infrastructure/auth/userConverter';
 import Head from '../components/core/Head';
 
+console.log('starting _app.tsx', new Date());
 TimeAgo.addDefaultLocale(en);
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
-
+console.log('initialized clientSideEmotionCache _app.tsx', new Date());
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
@@ -32,12 +33,12 @@ export const UserContext = React.createContext<{
 }>({
   user: undefined,
 });
-
+console.log('initialized UserContext _app.tsx', new Date());
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const [isDarkMode, toggleDarkMode] = useDarkMode({});
   const [user, setUser] = useState<User | undefined>(undefined);
-
+  console.log('inside MyApp _app.tsx', new Date());
   React.useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -47,8 +48,8 @@ export default function MyApp(props: MyAppProps) {
         setUser(undefined);
       }
     });
+    console.log('inside initialized auth handler _app.tsx', new Date());
   }, []);
-
   return (
     <CacheProvider value={emotionCache}>
       <Head />
