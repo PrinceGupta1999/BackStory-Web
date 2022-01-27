@@ -1,13 +1,13 @@
+import { Grid, Theme, useMediaQuery } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import Link from '../components/core/Link';
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import Image from 'next/image';
-import { Grid, Theme, useMediaQuery } from '@mui/material';
 import StoryCardsSection from '../components/content/StoryCardsSection';
-import { StoryDto } from '../types/content/storyDto';
-import { getStories } from '../infrastructure/content/storyRepository';
-import { storyDtoConverter } from '../infrastructure/content/storyConverter';
 import Head from '../components/core/Head';
+import Link from '../components/core/Link';
+import { storyDtoConverter } from '../infrastructure/content/storyConverter';
+import { getStories } from '../infrastructure/content/storyRepository';
+import { StoryDto } from '../types/content/storyDto';
 interface IndexPageProps {
   latestStories: StoryDto[];
   featuredStories: StoryDto[];
@@ -34,6 +34,9 @@ const Index: NextPage<IndexPageProps> = ({
 }) => {
   const showAppScreenImage = useMediaQuery((theme: Theme) =>
     theme.breakpoints.up('md')
+  );
+  const showLogoMockupImage = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.up('sm')
   );
 
   return (
@@ -73,7 +76,7 @@ const Index: NextPage<IndexPageProps> = ({
                     display={showAppScreenImage ? 'flex' : 'none'}
                   >
                     <Image
-                      src="/images/app-screen-light.png"
+                      src="/images/app-screen.png"
                       width={250}
                       height={500}
                     />
@@ -94,6 +97,17 @@ const Index: NextPage<IndexPageProps> = ({
                           height={70}
                         />
                       </Link>
+                      <span
+                        style={{
+                          display: showLogoMockupImage ? 'flex' : 'none',
+                        }}
+                      >
+                        <Image
+                          src="/images/logo-mockup.png"
+                          width={200}
+                          height={200}
+                        />
+                      </span>
                     </Grid>
                   </Grid>
                 </Grid>
