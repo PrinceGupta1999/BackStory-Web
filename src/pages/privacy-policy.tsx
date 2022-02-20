@@ -7,7 +7,7 @@ const md = `# Privacy Policy
 
 **Last modification date: February 20, 2022**
 
-Lord Shanidev (Sole Proprietorship) (hereinafter referred to as Backstory) operates the website at [https://backstory.](https://finshots.in/)today (“Site”). We respect the privacy of each user (referred to as “you” or “a user”), of our services (Site, App, Newsletter) whether it's your first time, or if you’ve visited our Site previously. This Privacy Statement gives you specific information about how we protect your privacy, how we treat information we collect on the Site that identifies an individual user (“Personal Information”), and how we use aggregated information.
+Lord Shanidev (Sole Proprietorship) (hereinafter referred to as Backstory) operates the website at [https://backstory.today](https://backstory.today) (“Site”). We respect the privacy of each user (referred to as “you” or “a user”), of our services (Site, App, Newsletter) whether it's your first time, or if you’ve visited our Site previously. This Privacy Statement gives you specific information about how we protect your privacy, how we treat information we collect on the Site that identifies an individual user (“Personal Information”), and how we use aggregated information.
 
 By registering for or using the site, you signify your acceptance of this privacy statement. If you do not agree to this privacy statement, you cannot use the site. We reserve the right to modify this Statement at any time by posting a notice on the Site’s home page. (If we consider it appropriate, we may also provide additional notice of significant changes.) Your use of the Site after the date of the last modification listed at the beginning of this Privacy Statement indicates to us that you agree to the changes.
 
