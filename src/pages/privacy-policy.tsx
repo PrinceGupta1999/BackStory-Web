@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import { NextPage } from 'next';
 import Head from '../components/core/Head';
 import Markdown from '../components/core/Markdown';
