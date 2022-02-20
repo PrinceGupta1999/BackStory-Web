@@ -82,6 +82,8 @@ export const CreateEditStory: React.FC<CreateEditStoryProps> = ({ story }) => {
     severity: 'error',
   });
 
+  // console.log(mdStory);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     setStoryError({});
     e.preventDefault();

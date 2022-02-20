@@ -39,9 +39,16 @@ const Footer: React.FC = () => {
         </Grid>
         <Grid item xs={6} md={3}>
           <Grid container direction="column">
-            <Typography variant="overline">Terms & Policies</Typography>
+            <Typography
+              variant="body1"
+              component={Link}
+              color="inherit"
+              href="/privacy-policy"
+            >
+              Privacy Policy
+            </Typography>
+            <Typography variant="body1">Terms & Policies</Typography>
             <Typography variant="body1">Terms of Use</Typography>
-            <Typography variant="body1">Privacy Policy</Typography>
             <Typography variant="body1">Grievance Redressal</Typography>
           </Grid>
         </Grid>
