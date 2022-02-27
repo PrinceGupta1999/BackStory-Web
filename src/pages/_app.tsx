@@ -31,7 +31,7 @@ export const UserContext = React.createContext<{
 });
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-  const [isDarkMode, toggleDarkMode] = useDarkMode({});
+  const [isDarkMode, _] = useDarkMode({});
   const [user, setUser] = useState<User | undefined>(undefined);
   React.useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
