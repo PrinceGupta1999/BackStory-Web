@@ -1,6 +1,6 @@
 import { Grid, Theme, useMediaQuery } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
+import { GetStaticPropsResult, NextPage } from 'next';
 import Image from 'next/image';
 import StoryCardsSection from '../components/content/StoryCardsSection';
 import Head from '../components/core/Head';
