@@ -13,10 +13,9 @@ interface IndexPageProps {
   featuredStories: StoryDto[];
 }
 
-export async function getStaticProps(
-  context: GetStaticPropsContext
-): Promise<GetStaticPropsResult<IndexPageProps>> {
-  console.log('inside getStaticProps path: /', context);
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<IndexPageProps>
+> {
   const latestStories = await getStories(false, null, 4);
   const featuredStories = await getStories(true, null, 4);
   return {
