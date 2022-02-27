@@ -17,14 +17,11 @@ interface EditStoryPageProps {
 export async function getServerSideProps(
   context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<EditStoryPageProps>> {
-  console.log('inside getServerSideProps path: /admin/story/[slug]', context);
   if (!context.params?.slug || !(typeof context.params.slug === 'string'))
     return {
       notFound: true,
     };
-  console.log(context.params.slug);
   const story = await getStoryBySlug(context.params.slug, AccessLevel.ADMIN);
-  console.log(story);
   if (!story)
     return {
       notFound: true,

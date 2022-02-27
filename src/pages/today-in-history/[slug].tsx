@@ -23,7 +23,6 @@ interface StoryPageProps {
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-  console.log('inside getStaticPaths path: /today-in-history/[slug]');
   const stories = await getStories();
   return {
     paths: stories.map((story) => {
@@ -40,9 +39,7 @@ export async function getStaticProps(
     return {
       notFound: true,
     };
-  console.log(context.params.slug);
   const story = await getStoryBySlug(context.params.slug);
-  console.log(story);
   if (!story)
     return {
       notFound: true,
@@ -50,7 +47,6 @@ export async function getStaticProps(
   let readMoreStories: StoryDto[] = [];
   if (story.readMoreStorySlugs?.length) {
     readMoreStories = await getStoriesBySlugIn(story.readMoreStorySlugs);
-    console.log(readMoreStories);
   }
   return {
     props: {

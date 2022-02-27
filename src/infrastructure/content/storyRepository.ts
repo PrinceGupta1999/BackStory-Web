@@ -40,7 +40,6 @@ export const getStoryBySlug = async (
   slug: string,
   accessLevel: AccessLevel = AccessLevel.USER
 ): Promise<StoryDto | null> => {
-  console.log(slug, accessLevel);
   const thotsRef = collection(db, FirestoreCollections.thots);
   let q: Query<DocumentData> | CollectionReference<DocumentData> = thotsRef;
   q = fillQueryForAccessLevel(

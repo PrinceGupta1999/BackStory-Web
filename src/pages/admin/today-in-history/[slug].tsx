@@ -25,10 +25,6 @@ interface StoryPageProps {
 export async function getServerSideProps(
   context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<StoryPageProps>> {
-  console.log(
-    'inside getServerSideProps path: /admin/today-in-history/[slug]',
-    context
-  );
   if (!context.params?.slug || !(typeof context.params.slug === 'string'))
     return {
       notFound: true,
