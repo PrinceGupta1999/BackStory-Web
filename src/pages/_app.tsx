@@ -9,6 +9,8 @@ import { useState } from 'react';
 import useDarkMode from 'use-dark-mode-hook';
 import createEmotionCache from '../components/core/createEmotionCache';
 import Head from '../components/core/Head';
+import Footer from '../components/layout/Footer';
+import NavBar from '../components/layout/NavBar';
 import { getUser } from '../infrastructure/auth/authRepository';
 import { userDtoConverter } from '../infrastructure/auth/userConverter';
 import { auth } from '../infrastructure/core/initializeFirebase';
@@ -31,7 +33,7 @@ export const UserContext = React.createContext<{
 });
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-  const [isDarkMode, _] = useDarkMode({});
+  const [isDarkMode, toggleDarkMode] = useDarkMode({});
   const [user, setUser] = useState<User | undefined>(undefined);
   React.useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
@@ -50,9 +52,9 @@ export default function MyApp(props: MyAppProps) {
         <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          {/* <NavBar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} /> */}
+          <NavBar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
           <Component {...pageProps} />
-          {/* <Footer /> */}
+          <Footer />
         </ThemeProvider>
       </UserContext.Provider>
     </CacheProvider>
