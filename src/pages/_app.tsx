@@ -1,22 +1,20 @@
-import * as React from 'react';
-import { AppProps } from 'next/app';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import { darkTheme, lightTheme } from '../theme';
-import createEmotionCache from '../components/core/createEmotionCache';
-import NavBar from '../components/layout/NavBar';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
-import Footer from '../components/layout/Footer';
-import useDarkMode from 'use-dark-mode-hook';
-import '../styles/styles.css';
-import { User } from '../types/auth/user';
+import { AppProps } from 'next/app';
+import * as React from 'react';
 import { useState } from 'react';
-import { auth } from '../infrastructure/core/initializeFirebase';
+import useDarkMode from 'use-dark-mode-hook';
+import createEmotionCache from '../components/core/createEmotionCache';
+import Head from '../components/core/Head';
 import { getUser } from '../infrastructure/auth/authRepository';
 import { userDtoConverter } from '../infrastructure/auth/userConverter';
-import Head from '../components/core/Head';
+import { auth } from '../infrastructure/core/initializeFirebase';
+import '../styles/styles.css';
+import { darkTheme, lightTheme } from '../theme';
+import { User } from '../types/auth/user';
 
 TimeAgo.addDefaultLocale(en);
 
@@ -52,9 +50,9 @@ export default function MyApp(props: MyAppProps) {
         <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <NavBar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+          {/* <NavBar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} /> */}
           <Component {...pageProps} />
-          <Footer />
+          {/* <Footer /> */}
         </ThemeProvider>
       </UserContext.Provider>
     </CacheProvider>
