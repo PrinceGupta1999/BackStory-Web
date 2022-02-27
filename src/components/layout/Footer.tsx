@@ -29,16 +29,17 @@ const Footer: React.FC = () => {
         <Grid item xs={6} md={3}>
           <Grid container direction="column">
             <Typography variant="overline">Get the app</Typography>
-            <Link href="https://apps.apple.com">
+            <Link href="https://apps.apple.com/us/app/backstory-history-tldr/id1610918011">
               <Image src="/images/app-store.svg" width={150} height={50} />
             </Link>
-            <Link href="https://play.google.com">
+            <Link href="https://play.google.com/store/apps/details?id=today.backstory.app">
               <Image src="/images/google-play.svg" width={150} height={50} />
             </Link>
           </Grid>
         </Grid>
         <Grid item xs={6} md={3}>
           <Grid container direction="column">
+            <Typography variant="overline">Terms of Use</Typography>
             <Typography
               variant="body1"
               component={Link}
@@ -47,9 +48,22 @@ const Footer: React.FC = () => {
             >
               Privacy Policy
             </Typography>
-            <Typography variant="body1">Terms & Policies</Typography>
-            <Typography variant="body1">Terms of Use</Typography>
-            <Typography variant="body1">Grievance Redressal</Typography>
+            <Typography
+              variant="body1"
+              component={Link}
+              color="inherit"
+              href="/terms-of-use"
+            >
+              Terms of Use
+            </Typography>
+            <Typography
+              variant="body1"
+              component={Link}
+              color="inherit"
+              href="/grievance-redressal"
+            >
+              Grievance Redressal
+            </Typography>
           </Grid>
         </Grid>
 
@@ -57,7 +71,7 @@ const Footer: React.FC = () => {
           <Grid container direction="column">
             <Typography variant="overline">Find us on Social Media</Typography>
             <Link
-              href="https://www.youtube.com/channel/UC7WjR3uuWDu88YvZX0eET0A"
+              href="https://www.youtube.com/channel/UC7n284RbarleeL99_gGnzQg"
               color="primary.contrastText"
               sx={{ display: 'flex' }}
             >
@@ -77,7 +91,7 @@ const Footer: React.FC = () => {
               </Typography>
             </Link>
             <Link
-              href="https://apps.apple.com"
+              href="https://www.linkedin.com/company/backstorytoday"
               color="primary.contrastText"
               sx={{ display: 'flex' }}
             >
@@ -101,7 +115,7 @@ const Footer: React.FC = () => {
       </Grid>
       <Grid container justifyContent="center">
         <Typography variant="overline">
-          BackStory © {new Date().getFullYear()}, All Rights Reserved
+          BackStory © 2022, All Rights Reserved
         </Typography>
       </Grid>
     </Grid>

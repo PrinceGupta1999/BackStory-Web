@@ -24,7 +24,7 @@ When you use the Website, Apps, Newsletters and interact with our Services, we m
 * user preferences; and
 * which pages you visited.
 
-## THIS IS WHAT WE DO WITH THE INFORMATION WE COLLECT ABOUT YOU  
+## THIS IS WHAT WE DO WITH THE INFORMATION WE COLLECT ABOUT YOU
 
 We use the information you provide to us to:
 

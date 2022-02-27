@@ -81,7 +81,10 @@ export const About: NextPage = () => {
               </Grid>
               <Grid item xs={6} p={1}>
                 <Paper>
-                  <Link href="https://play.google.com" underline="none">
+                  <Link
+                    href="https://play.google.com/store/apps/details?id=today.backstory.app"
+                    underline="none"
+                  >
                     <Grid
                       container
                       p={4}
@@ -102,7 +105,10 @@ export const About: NextPage = () => {
               </Grid>
               <Grid item xs={6} p={1}>
                 <Paper>
-                  <Link href="https://apps.apple.com" underline="none">
+                  <Link
+                    href="https://apps.apple.com/us/app/backstory-history-tldr/id1610918011"
+                    underline="none"
+                  >
                     <Grid
                       container
                       p={4}

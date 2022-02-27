@@ -82,14 +82,14 @@ const Index: NextPage<IndexPageProps> = ({
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <Grid container direction="column">
-                      <Link href="https://apps.apple.com">
+                      <Link href="https://apps.apple.com/us/app/backstory-history-tldr/id1610918011">
                         <Image
                           src="/images/app-store.svg"
                           width={200}
                           height={70}
                         />
                       </Link>
-                      <Link href="https://play.google.com">
+                      <Link href="https://play.google.com/store/apps/details?id=today.backstory.app">
                         <Image
                           src="/images/google-play.svg"
                           width={200}
