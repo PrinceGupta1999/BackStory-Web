@@ -52,7 +52,10 @@ export async function getServerSideProps(
 const StoryPage: NextPage<StoryPageProps> = ({ story, readMoreStories }) => {
   return (
     <>
-      <Head title={story?.title ? `${story?.title} | BackStory` : undefined} />
+      <Head
+        title={story?.title ? `${story?.title} | BackStory` : undefined}
+        image={story?.bannerImageUrl}
+      />
       <Grid container justifyContent="center">
         {story ? (
           <StoryContent story={storyDtoConverter.fromDto(story)} />

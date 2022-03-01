@@ -1,4 +1,11 @@
-import { Chip, Divider, Grid, Stack, Typography } from '@mui/material';
+import {
+  Chip,
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import Image from 'next/image';
 import { Story } from '../../types/content/story';
 import Link from '../core/Link';
@@ -10,17 +17,22 @@ interface StoryContentProps {
 }
 
 const StoryContent: React.FC<StoryContentProps> = ({ story }) => {
+  const theme = useTheme();
   return (
     <Grid container minHeight="calc(100vh - 64px)" justifyContent="center">
-      <Grid container maxWidth="lg">
+      <Grid container>
         <div
           style={{
             position: 'relative',
             width: '100%',
-            height: '300px',
+            height: '500px',
+            backgroundColor:
+              theme.palette.mode == 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
           }}
         >
-          <Image src={story.bannerImageUrl} layout="fill" />
+          <Image src={story.bannerImageUrl} layout="fill" objectFit="contain" />
         </div>
       </Grid>
       <Grid container maxWidth="lg" direction="column" p={2}>

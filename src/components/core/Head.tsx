@@ -72,7 +72,7 @@ const Head: React.FC<HeadProps> = ({ title, description, image, page }) => {
 Head.defaultProps = {
   title: 'BackStory',
   description: 'Learn about history one BackStory at a time',
-  image: '/images/logo.png',
+  image: 'https://backstory.today/images/featured-logo.png',
   page: 'https://backstory.today',
 };
 
