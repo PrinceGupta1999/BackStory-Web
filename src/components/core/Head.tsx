@@ -60,7 +60,6 @@ const Head: React.FC<HeadProps> = ({ title, description, image, page }) => {
         key="twitter-creator"
         content="@TheBackstoryApp"
       />
-      <meta name="twitter:image:src" key="twitter-page" content={page} />
       {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --> */}
       <meta name="og:title" key="og-title" content={title} />
       <meta name="og:description" key="og-description" content={description} />

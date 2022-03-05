@@ -63,6 +63,7 @@ const StoryPage: NextPage<StoryPageProps> = ({ story, readMoreStories }) => {
       <Head
         title={story?.title ? `${story?.title} | BackStory` : undefined}
         image={story?.bannerImageUrl}
+        description={story?.outline}
       />
       <Grid container justifyContent="center">
         {story ? (
