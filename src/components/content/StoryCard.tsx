@@ -31,6 +31,7 @@ const StoryCard: React.FC<StoryCardProps> = ({
       sx={{
         ...sx,
         display: 'flex',
+        flexGrow: 1,
         flexDirection: 'column',
         alignItems: 'stretch',
       }}
