@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
               </Typography>
             </Link>
             <Link
-              href="https://www.instagram.com/thebackstoryapp/"
+              href="https://www.instagram.com/backstorytoday/"
               color="primary.contrastText"
               sx={{ display: 'flex' }}
             >

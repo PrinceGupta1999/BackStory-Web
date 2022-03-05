@@ -1,23 +1,26 @@
 import {
+  addDoc,
   collection,
+  CollectionReference,
+  doc,
   DocumentData,
   getDocs,
-  query,
-  where,
-  Query,
-  CollectionReference,
-  orderBy,
   limit,
+  orderBy,
+  query,
+  Query,
   setDoc,
-  doc,
-  addDoc,
+  where,
 } from 'firebase/firestore';
 import { StoryDto } from '../../types/content/storyDto';
 import { AccessLevel } from '../../types/enum/accessLevel';
 import { PublishStatus } from '../../types/enum/publishStatus';
 import { FirestoreCollections } from '../core/firestoreCollections';
 import { db } from '../core/initializeFirebase';
-import { firestoreStoryConverter, formatDateString } from './storyConverter';
+import {
+  firestoreStoryConverter,
+  getDateStringUTCPlus12Hours,
+} from './storyConverter';
 import { StoryFields } from './storyFields';
 
 export const getStories = async (
@@ -77,7 +80,7 @@ const fillQueryForAccessLevel = (
           '==',
           PublishStatus.PUBLISHED.toLongString()
         ),
-        where(StoryFields.publishDate, '<=', formatDateString(new Date())),
+        where(StoryFields.publishDate, '<=', getDateStringUTCPlus12Hours()),
         orderBy(StoryFields.publishDate, 'desc')
       );
     case AccessLevel.ADMIN:

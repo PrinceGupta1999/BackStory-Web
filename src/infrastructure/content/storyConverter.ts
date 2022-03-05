@@ -71,3 +71,10 @@ export const formatDateString = (date: Date): string => {
   const utcDate = new Date(date.getTime() - offset * 60 * 1000);
   return utcDate.toISOString().split('T')[0];
 };
+
+export const getDateStringUTCPlus12Hours = (): string => {
+  const currentDatePlus12Hours = new Date(
+    new Date().getTime() + 43200000 // adding 12 hours cause UTC+12.00 is the maximum time that can happen
+  );
+  return currentDatePlus12Hours.toISOString().split('T')[0];
+};

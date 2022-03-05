@@ -49,7 +49,12 @@ const StoryCard: React.FC<StoryCardProps> = ({
       >
         <CardMedia sx={{ display: 'flex' }}>
           <div style={{ position: 'relative', width: '100%', height: 200 }}>
-            <Image src={story.bannerImageUrl} layout="fill" objectFit="cover" />
+            <Image
+              src={story.bannerImageUrl}
+              objectPosition="0 10%"
+              layout="fill"
+              objectFit="cover"
+            />
           </div>
         </CardMedia>
         <CardContent

@@ -42,8 +42,13 @@ const Head: React.FC<HeadProps> = ({ title, description, image, page }) => {
       />
       <meta itemProp="image" key="google-image" content={image} />
       {/* <!-- Twitter --> */}
-      <meta name="twitter:card" key="twitter-card" content="summary" />
+      <meta
+        name="twitter:card"
+        key="twitter-card"
+        content="summary_large_image"
+      />
       <meta name="twitter:title" key="twitter-title" content={title} />
+      <meta name="twitter:image" key="twitter-image" content={image} />
       <meta
         name="twitter:description"
         key="twitter-description"
