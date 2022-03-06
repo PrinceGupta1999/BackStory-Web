@@ -1,14 +1,18 @@
 import { Grid } from '@mui/material';
+import { logEvent } from 'firebase/analytics';
 import {
   GetStaticPathsResult,
   GetStaticPropsContext,
   GetStaticPropsResult,
   NextPage,
 } from 'next';
+import { useEffect, useState } from 'react';
 import SkeletonStoryContent from '../../components/content/skeleton/SkeletonStoryContent';
 import StoryCardsSection from '../../components/content/StoryCardsSection';
 import StoryContent from '../../components/content/StoryContent';
 import Head from '../../components/core/Head';
+import { toLocalIsoString } from '../../core/utils';
+import { useAnalytics } from '../../hooks/useAnalytics';
 import { storyDtoConverter } from '../../infrastructure/content/storyConverter';
 import {
   getStories,
@@ -16,6 +20,7 @@ import {
   getStoryBySlug,
 } from '../../infrastructure/content/storyRepository';
 import { StoryDto } from '../../types/content/storyDto';
+import { AnalyticsEvent } from '../../types/enum/analyticsEvent';
 
 interface StoryPageProps {
   story?: StoryDto;
@@ -58,6 +63,27 @@ export async function getStaticProps(
 }
 
 const StoryPage: NextPage<StoryPageProps> = ({ story, readMoreStories }) => {
+  const analytics = useAnalytics();
+  const [startTime, _] = useState(new Date());
+
+  useEffect(() => {
+    if (story && analytics) {
+      return () => {
+        logEvent(analytics, AnalyticsEvent.STORY_READ, {
+          thotId: story.id,
+          thotSlug: story.slug,
+          publishedDate: story.publishDate,
+          readSource: 'browsing',
+          visitTimeStamp: startTime.toISOString(),
+          timeStampUtc: toLocalIsoString(new Date()),
+          timeStampLocal: new Date().toISOString(),
+          duration: new Date(new Date().getTime() - startTime.getTime())
+            .toTimeString()
+            .split(' ')[0],
+        });
+      };
+    }
+  }, [story, analytics]);
   return (
     <>
       <Head
