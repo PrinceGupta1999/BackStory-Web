@@ -1,7 +1,7 @@
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import { setCurrentScreen, setUserProperties } from 'firebase/analytics';
+import { setCurrentScreen } from 'firebase/analytics';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 import { AppProps } from 'next/app';
