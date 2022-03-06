@@ -1,9 +1,9 @@
-export interface IpApiDemographyResponse {
-  query: string; // ip address
-  country: string;
+export interface GeoIpLookupResponse {
+  ip: string; // ip address
+  country_name: string;
   city: string;
-  lat: string;
-  lon: string;
+  latitude: number;
+  longitude: number;
 }
 
 export interface UserDemographyResponse {

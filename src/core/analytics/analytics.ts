@@ -1,15 +1,13 @@
 import { Analytics, setUserProperties } from 'firebase/analytics';
 import {
-  IpApiDemographyResponse,
+  GeoIpLookupResponse,
   UserDemographyResponse,
 } from '../../types/analytics/demographyResponse';
 
 export const addUserDemographyInfo = async (analytics: Analytics) => {
-  const response = await fetch(
-    'http://ip-api.com/json?fields=country,city,lat,lon,query'
-  );
+  const response = await fetch('https://json.geoiplookup.io/');
   if (response.ok) {
-    const result: IpApiDemographyResponse = await response.json();
+    const result: GeoIpLookupResponse = await response.json();
 
     setUserProperties(analytics, {
       ...convertApiDemographyResponseToUserDemographyResponse(result),
@@ -19,13 +17,13 @@ export const addUserDemographyInfo = async (analytics: Analytics) => {
 };
 
 const convertApiDemographyResponseToUserDemographyResponse = (
-  ipApiResponse: IpApiDemographyResponse
+  ipApiResponse: GeoIpLookupResponse
 ): UserDemographyResponse => {
   return {
-    ipAddress: ipApiResponse.query,
+    ipAddress: ipApiResponse.ip,
     city: ipApiResponse.city,
-    country: ipApiResponse.country,
-    latitude: parseFloat(ipApiResponse.lat),
-    longitude: parseFloat(ipApiResponse.lon),
+    country: ipApiResponse.country_name,
+    latitude: ipApiResponse.latitude,
+    longitude: ipApiResponse.longitude,
   };
 };
