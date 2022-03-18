@@ -47,7 +47,7 @@ export const storyDtoConverter = {
     return {
       ...story,
       publishDate: formatDateString(story.publishDate),
-      eventDate: formatDateString(story.publishDate),
+      eventDate: formatDateString(story.eventDate),
       language: story.language.toLongString(),
       publishStatus: story.publishStatus.toLongString(),
     };
@@ -56,7 +56,7 @@ export const storyDtoConverter = {
     return {
       ...storyDto,
       publishDate: new Date(storyDto.publishDate),
-      eventDate: new Date(storyDto.publishDate),
+      eventDate: new Date(storyDto.eventDate),
       language:
         Language.fromLongString(storyDto.language) ?? Language.ENGLISH_US,
       publishStatus:

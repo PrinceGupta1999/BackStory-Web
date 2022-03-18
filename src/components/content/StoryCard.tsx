@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import { Chip, Grid, Stack } from '@mui/material';
+import { Chip, Grid } from '@mui/material';
 import { Story } from '../../types/content/story';
 import { SxProps } from '@mui/system';
 import TimeAgoTypography from './TimeAgoTypography';
@@ -67,19 +67,20 @@ const StoryCard: React.FC<StoryCardProps> = ({
           <Typography variant="body2" color="text.secondary">
             {story.outline}
           </Typography>
-          <Stack direction="row" spacing={1} my={1}>
+          <Grid container spacing={0.5} my={1}>
             {story.tags.map((tag) => (
-              <Chip
-                key={tag}
-                label={tag}
-                clickable
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.push(`/today-in-history/tag/${tag}`);
-                }}
-              />
+              <Grid item key={tag}>
+                <Chip
+                  label={tag}
+                  clickable
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push(`/today-in-history/tag/${tag}`);
+                  }}
+                />
+              </Grid>
             ))}
-          </Stack>
+          </Grid>
         </CardContent>
         <CardActions sx={{ display: 'flex' }}>
           <Grid container justifyContent="space-between" px={2}>
