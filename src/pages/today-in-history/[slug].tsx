@@ -43,11 +43,13 @@ export async function getStaticProps(
   if (!context.params?.slug || !(typeof context.params.slug === 'string'))
     return {
       notFound: true,
+      revalidate: 600,
     };
   const story = await getStoryBySlug(context.params.slug);
   if (!story)
     return {
       notFound: true,
+      revalidate: 600,
     };
   let readMoreStories: StoryDto[] = [];
   if (story.readMoreStorySlugs?.length) {
